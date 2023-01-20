@@ -1,0 +1,27 @@
+.spinner {
+    .circle {
+        animation: spinners linear infinite;
+    }
+
+    .one {
+        animation-duration: .85s
+    }
+
+    .two {
+        animation-duration: .95s
+    } 
+    
+    .three {
+        animation-duration: 1.05s
+    }    
+}
+
+@keyframes spinners {
+    0% {
+        transform: rotate(0deg)
+    }
+    
+    100% {
+        transform: rotate(360deg)
+    }
+}

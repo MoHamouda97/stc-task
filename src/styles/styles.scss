@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background-color: #f1f5f9;
+}
+
+
+.mat-mdc-unelevated-button>.mat-icon, .mat-mdc-raised-button>.mat-icon, .mat-mdc-outlined-button>.mat-icon {
+    margin: 0 !important;
+}

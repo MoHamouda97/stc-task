@@ -1,0 +1,26 @@
+<!-- Loading bar -->
+<stc-loading-bar></stc-loading-bar>
+
+<!-- Wrapper -->
+<div class="layout-wrapper">
+
+    <!-- Nav -->
+    <nav class="relative flex flex-0 items-center w-full h-12 px-4 md:px-6 z-49 shadow">
+        <div class="flex items-center mx-2 lg:mr-8">
+            <img class="w-12" src="assets/images/stc-logo.png" />
+        </div>
+
+        <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2">
+            <app-languages></app-languages>
+            <app-logout></app-logout>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="relative">
+        <!-- Content -->
+        <div class="w-full h-12 px-4 md:px-6 mt-8">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

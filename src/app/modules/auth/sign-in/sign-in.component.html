@@ -1,0 +1,124 @@
+<div class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center flex-auto min-w-0">
+    <div class="md:flex md:items-center md:justify-end w-full sm:w-auto md:h-full py-8 px-4 sm:p-12 md:p-16 sm:rounded-2xl md:rounded-none sm:shadow md:shadow-none bg-gray-100">
+        <div class="w-full max-w-80 sm:w-80 mx-auto sm:mx-0">
+
+            <!-- Title -->
+            <div class="text-4xl font-extrabold tracking-tight leading-tight">Sign in</div>
+
+            <!-- Alert -->
+            <div class="mt-8 p-4 border border-solid rounded border-blue-700 bg-blue-100 text-blue-900">
+                You can login as <strong>Admin</strong> or <strong>User</strong> by submitting the user name and password
+            </div>
+
+            <!-- Sign in form -->
+            <form
+                class="mt-8"
+                [formGroup]="signInForm">
+                
+                <!-- Email field -->
+                <mat-form-field class="w-full">
+                    <mat-label>Username</mat-label>
+                    <input
+                        id="username"
+                        matInput
+                        formControlName="username">
+                    <mat-error>
+                        Username is required
+                    </mat-error>
+                </mat-form-field>
+                
+                <!-- Password field -->
+                <mat-form-field class="w-full">
+                    <mat-label>Password</mat-label>
+                    <input
+                        id="password"
+                        matInput
+                        type="password"
+                        formControlName="password"
+                        #passwordField>
+                    <button
+                        mat-icon-button
+                        type="button"
+                        (click)="passwordField.type === 'password' ? passwordField.type = 'text' : passwordField.type = 'password'"
+                        matSuffix>
+                        <mat-icon
+                            class="icon-size-5"
+                            *ngIf="passwordField.type === 'password'"
+                            [svgIcon]="'heroicons_solid:eye'"></mat-icon>
+                        <mat-icon
+                            class="icon-size-5"
+                            *ngIf="passwordField.type === 'text'"
+                            [svgIcon]="'heroicons_solid:eye-off'"></mat-icon>
+                    </button>
+                    <mat-error>
+                        Password is required
+                    </mat-error>
+                </mat-form-field>
+                
+                <!-- Actions -->
+                <div class="inline-flex items-center justify-between w-full mt-1.5">
+                    <mat-checkbox
+                        class="-ml-2"
+                        [color]="'primary'">
+                        Remember me
+                    </mat-checkbox>
+                    <a
+                        class="text-md font-medium text-primary-500 hover:underline"
+                        href="javascript: void(0);">Forgot password?
+                    </a>
+                </div>
+                
+                <!-- Submit button -->
+                <button
+                    class="w-full mt-6"
+                    mat-flat-button
+                    [color]="'primary'"
+                    [disabled]="signInForm.disabled"
+                    (click)="signIn()">
+                    <span *ngIf="!signInForm.disabled">
+                        Sign in
+                    </span>
+                    <mat-progress-spinner
+                        *ngIf="signInForm.disabled"
+                        [diameter]="24"
+                        [mode]="'indeterminate'"></mat-progress-spinner>
+                </button>
+                
+                <!-- Separator -->
+                <div class="flex items-center mt-8">
+                    <div class="flex-auto mt-px border-t"></div>
+                    <div class="mx-2 text-secondary">Or continue with</div>
+                    <div class="flex-auto mt-px border-t"></div>
+                </div>
+                
+                <!-- Single sign-on buttons -->
+                <div class="flex items-center mt-8 space-x-4">
+                    <button
+                        class="flex-auto"
+                        type="button"
+                        mat-stroked-button>
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'feather:facebook'"></mat-icon>
+                    </button>
+                    <button
+                        class="flex-auto"
+                        type="button"
+                        mat-stroked-button>
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'feather:twitter'"></mat-icon>
+                    </button>
+                    <button
+                        class="flex-auto"
+                        type="button"
+                        mat-stroked-button>
+                        <mat-icon
+                            class="icon-size-5"
+                            [svgIcon]="'feather:github'"></mat-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

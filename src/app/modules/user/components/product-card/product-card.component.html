@@ -1,0 +1,40 @@
+<mat-card class="shadow">
+    <mat-card-header>
+      <div class="h-20 mb-16">
+        <mat-card-subtitle>{{product.category}} - {{product.price | currency}}</mat-card-subtitle>
+        <mat-card-title>{{product.title}}</mat-card-title>
+      </div>
+    </mat-card-header>
+
+    <div class="h-60">
+      <img class="h-full m-auto" mat-card-image [src]="product.image">
+    </div>
+
+    <mat-card-content>
+      <ng-container *ngIf="!isReadMore">
+        <p class="mt-4">
+          {{(product.description | slice:0:75) + " ..."}}
+          <button mat-button color="primary" (click)="isReadMore = true">Read More</button>
+        </p>
+      </ng-container>
+      <ng-container *ngIf="isReadMore">
+        <p class="mt-4">
+          {{product.description}}
+          <button mat-button color="primary" (click)="isReadMore = false">Read Less</button>
+        </p>
+      </ng-container>
+    </mat-card-content>
+</mat-card>
+
+<!-- <mat-card class="shadow">
+  <mat-card-header>
+    <mat-card-subtitle>{{product.category}} - {{product.price | currency}}</mat-card-subtitle>
+    <mat-card-title>{{(product.title.length > 20) ? (product.title | slice:0:15) + "..." : product.title}}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-actions>
+    <a mat-stroked-button routerLink="product/{{product.id}}">
+      View More
+    </a>
+  </mat-card-actions>
+</mat-card> -->

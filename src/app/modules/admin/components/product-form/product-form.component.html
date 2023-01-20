@@ -1,0 +1,62 @@
+<form class="mt-8" [formGroup]="productForm">
+    <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-8 w-full">
+        <!-- Title field -->
+        <mat-form-field class="w-full">
+            <mat-label>Title</mat-label>
+            <input
+                id="title"
+                matInput
+                formControlName="title">
+            <mat-error>
+                Title is required
+            </mat-error>
+        </mat-form-field> 
+
+        <!-- Price field -->
+        <mat-form-field class="w-full">
+            <mat-label>Price</mat-label>
+            <input
+                id="price"
+                type="number"
+                matInput
+                formControlName="price">
+            <mat-error>
+                Price is required
+            </mat-error>
+        </mat-form-field>    
+
+        <!-- Category field -->
+        <mat-form-field class="w-full">
+            <mat-label>Category</mat-label>
+            <input
+                id="category"
+                matInput
+                formControlName="category">
+            <mat-error>
+                Category is required
+            </mat-error>
+        </mat-form-field>
+                
+        <!-- Description field -->
+        <mat-form-field class="w-full">
+            <mat-label>Description</mat-label>
+            <input
+                id="description"
+                matInput
+                formControlName="description">
+            <mat-error>
+                Description is required
+            </mat-error>
+        </mat-form-field> 
+        
+        <button
+            class="w-full mt-6"
+            mat-flat-button
+            [color]="'primary'"
+            [disabled]="productForm.disabled || productForm.invalid"
+            (click)="!productId ? addProduct() : updateProduct()">
+            <span *ngIf="!productId">Add New Product</span>
+            <span *ngIf="productId">Update Product</span>
+        </button>        
+    </div>
+</form>
