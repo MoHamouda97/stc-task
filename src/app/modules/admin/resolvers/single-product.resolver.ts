@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
 import { Observable } from "rxjs";
 import { ProductsService } from "../services/products.service";
 
@@ -7,7 +7,7 @@ import { ProductsService } from "../services/products.service";
     providedIn: 'any'
 })
 
-export class SingleProductResolver implements Resolve<any> {
+export class SingleProductResolver  {
     constructor(private service: ProductsService) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Observable<any> {

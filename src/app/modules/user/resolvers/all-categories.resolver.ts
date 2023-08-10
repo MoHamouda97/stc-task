@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
 import { Observable } from "rxjs";
 import { CategoriesService } from "../services/categories.service";
 
@@ -7,7 +7,7 @@ import { CategoriesService } from "../services/categories.service";
     providedIn: 'any'
 })
 
-export class AllCategoriesResolver implements Resolve<any> {
+export class AllCategoriesResolver  {
     constructor(private service: CategoriesService) {}
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Observable<any> {

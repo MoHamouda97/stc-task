@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
+import { ActivatedRouteSnapshot, RouterStateSnapshot } from "@angular/router";
 import { Store, select } from "@ngrx/store";
 import { finalize, first, Observable, tap } from "rxjs";
 import { AppState } from "src/app/reducers";
@@ -10,7 +10,7 @@ import { isProductsLoaded } from "src/app/store/products/products.selectors";
     providedIn: 'any'
 })
 
-export class AllProductsResolver implements Resolve<any> {
+export class AllProductsResolver  {
     loading = false;
 
     constructor(private stroe: Store<AppState>) {}
