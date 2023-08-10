@@ -1,44 +1,48 @@
-<div class="flex flex-col flex-auto w-full">
-    <div class="flex flex-wrap w-full mx-auto">
-        <!-- Title and action buttons -->
-        <div class="flex items-center justify-between w-full">
-            <div>
-                <ng-container *transloco="let t">
+<ng-container *transloco="let t">
+    <div class="flex flex-col flex-auto w-full">
+        <div class="flex flex-wrap w-full mx-auto">
+            <!-- Title and action buttons -->
+            <div class="flex items-center justify-between w-full">
+                <div>
                     <div class="text-3xl font-semibold tracking-tight leading-8">{{t('product-dashboard')}}</div>
-                </ng-container>
-                <div class="font-medium tracking-tight text-secondary">
-                    Manage your products - 
-                    <a 
-                        routerLink="add" 
-                        mat-stroked-button
-                        color="primary"
-                        class="mr-2">
-                        Add                    
-                    </a>, Edit and Delete</div>
-            </div>
-            <div class="flex items-center">
-                <div class="hidden sm:block">
-                    <button
-                        class="sm:inline-flex m-3"
-                        mat-stroked-button>
-                        <mat-icon
-                            class="icon-size-5"
-                            [svgIcon]="'heroicons_outline:cog'"></mat-icon>
-                        <span class="ml-2">Settings</span>
-                    </button>
-                    <button
-                        class="sm:inline-flex"
-                        mat-flat-button
-                        [color]="'primary'">
-                        <mat-icon
-                            class="icon-size-5"
-                            [svgIcon]="'heroicons_outline:download'"></mat-icon>
-                        <span class="ml-2">Export</span>
-                    </button>
+                    <ng-container *transloco="let t">
+                    </ng-container>
+    
+                    <div class="font-medium tracking-tight text-secondary">
+                        {{t('manage')}}
+                        <a 
+                            routerLink="add" 
+                            mat-stroked-button
+                            color="primary"
+                            class="mx-2">
+                            {{t('add')}}                    
+                        </a>{{t('actions')}}  
+                    </div>
                 </div>
-            </div>
-        </div> 
+                <div class="flex items-center">
+                    <div class="hidden sm:block">
+                        <button
+                            class="sm:inline-flex m-3"
+                            mat-stroked-button>
+                            <mat-icon
+                                class="icon-size-5"
+                                [svgIcon]="'heroicons_outline:cog'"></mat-icon>
+                            <span class="ml-2">{{t('settings')}} </span>
+                        </button>
+                        <button
+                            class="sm:inline-flex"
+                            mat-flat-button
+                            [color]="'primary'">
+                            <mat-icon
+                                class="icon-size-5"
+                                [svgIcon]="'heroicons_outline:download'"></mat-icon>
+                            <span class="ml-2">{{t('export')}}</span>
+                        </button>
+                    </div>
+                </div>
+            </div> 
+        </div>
     </div>
-</div>
+</ng-container>
 
 <router-outlet></router-outlet>

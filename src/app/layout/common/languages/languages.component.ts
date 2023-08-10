@@ -18,6 +18,8 @@ export class LanguagesComponent {
 
       this.translocoService.langChanges$.subscribe((activeLang: any) => {
         this.activeLang = activeLang;
+
+        document.body.dir = (this.activeLang === 'en') ? 'ltr' : 'rtl';
       });
 
       this.flagCodes = {

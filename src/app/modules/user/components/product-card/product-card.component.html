@@ -12,29 +12,16 @@
 
     <mat-card-content>
       <ng-container *ngIf="!isReadMore">
-        <p class="mt-4">
+        <p class="mt-4 text-justify">
           {{(product.description | slice:0:75) + " ..."}}
           <button mat-button color="primary" (click)="isReadMore = true">Read More</button>
         </p>
       </ng-container>
       <ng-container *ngIf="isReadMore">
-        <p class="mt-4">
+        <p class="mt-4 text-justify">
           {{product.description}}
           <button mat-button color="primary" (click)="isReadMore = false">Read Less</button>
         </p>
       </ng-container>
     </mat-card-content>
 </mat-card>
-
-<!-- <mat-card class="shadow">
-  <mat-card-header>
-    <mat-card-subtitle>{{product.category}} - {{product.price | currency}}</mat-card-subtitle>
-    <mat-card-title>{{(product.title.length > 20) ? (product.title | slice:0:15) + "..." : product.title}}</mat-card-title>
-  </mat-card-header>
-
-  <mat-card-actions>
-    <a mat-stroked-button routerLink="product/{{product.id}}">
-      View More
-    </a>
-  </mat-card-actions>
-</mat-card> -->

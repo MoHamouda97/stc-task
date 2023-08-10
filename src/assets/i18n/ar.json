@@ -1,4 +1,20 @@
 {
-    "product-dashboard": "لوحة التحكم في المنتجات",
-    "browse-products": "تصفح المنتجات"
+  "product-dashboard": "لوحة التحكم في المنتجات",
+  "browse-products": "تصفح المنتجات",
+  "products-sub-title": "ابحث عن المنتجات التي تريدها",
+  "manage": "ادارة المنتجات - ",
+  "add": "اضافة",
+  "actions": "تعديل و حذف",
+  "settings": "اعدادات",
+  "export": "تصدير",
+  "id": "#",
+  "title": "العنوان",
+  "category": "الفئة",
+  "image": "صورة المنتج",
+  "price": "السعر",
+  "action": "أجراءات",
+  "description": "الوصف",
+  "add-product": "اضافة منتج جديد",
+  "edit-product": "تعديل المنتج",
+  "required": "الحقل مطلوب"
 }

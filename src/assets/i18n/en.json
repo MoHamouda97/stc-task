@@ -1,4 +1,20 @@
 {
-    "product-dashboard": "Product dashboard",
-    "browse-products": "Browse products"
+  "product-dashboard": "Product dashboard",
+  "browse-products": "Browse products",
+  "products-sub-title": "Search and enjoy our products.",
+  "manage": "Manage your products -",
+  "add": "Add",
+  "actions": "Edit and Delete",
+  "settings": "Settings",
+  "export": "Export",
+  "id": "#",
+  "title": "Title",
+  "category": "Category",
+  "image": "Image",
+  "price": "Price",
+  "action": "Actions",
+  "description": "Description",
+  "add-product": "Add New Product",
+  "edit-product": "Edit Product",
+  "required": "Field is Required"
 }
