@@ -1,0 +1,17 @@
+<ng-container *transloco="let t">
+    <div class="inline-flex flex-wrap w-full" style="gap: 2%;">
+        <ng-container *ngFor="let stat of ($stats | async)">
+            <div class="stat rounded-sm rounded p-5 shadow-md mb-2" [ngStyle]="{backgroundColor: stat.color}">
+                <div class="stat-content">
+                    <div class="stat-value text-5xl">
+                        <mat-icon>{{stat.icon}}</mat-icon>
+                        {{stat.value}}
+                    </div>
+                </div>
+                <div class="stat-title text-base mt-5">
+                    {{t(stat.title)}}
+                </div>
+            </div>
+        </ng-container>
+    </div>      
+</ng-container>

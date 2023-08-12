@@ -2,7 +2,7 @@ import { DOCUMENT, NgIf } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Subject, takeUntil } from 'rxjs';
-import { StcLoadingService } from 'src/@STC/services/loading/loading.service';
+import { StcLoadingService } from '../../services/loading/loading.service';
 
 @Component({
   selector: 'stc-loading-bar',
@@ -19,9 +19,6 @@ export class StcLoadingBarComponent implements OnInit, OnDestroy {
     @Inject(DOCUMENT) private document: any, 
     private stcLoadingService: StcLoadingService) {}
  
-  /**
-  * On init
-  */
   ngOnInit(): void {
     // Subscribe to the service
     this.stcLoadingService.show$
@@ -38,12 +35,10 @@ export class StcLoadingBarComponent implements OnInit, OnDestroy {
         }
     });
   }
+
+  
  
-  /**
-  * On destroy
-  */
   ngOnDestroy(): void {
-    // Unsubscribe from all subscriptions
     this.unsubscribeAll.next(null);
     this.unsubscribeAll.complete();
   }  

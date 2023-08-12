@@ -8,49 +8,41 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/reducers';
 import { productUpdated } from 'src/app/store/products/products.actions';
 import { Update } from '@ngrx/entity';
+import { ProductForm } from './form/product-form';
+import { Product } from 'src/app/shared/types/product';
 
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html'
 })
-export class ProductFormComponent implements OnInit, OnDestroy {
-  productId: any;
-  productForm: FormGroup;
-  unsubscribeAll: Subject<any> = new Subject<any>();
+export class ProductFormComponent extends ProductForm implements OnInit, OnDestroy {
+  productId: any = this.activatedRoute.snapshot.paramMap.get('id');
+  productForm: FormGroup = this.createProductForm();
+  $destroy: Subject<null> = new Subject<null>();
   
   constructor ( 
     private store: Store<AppState>,
     private activatedRoute: ActivatedRoute,   
     private service: ProductsService,
-    private toastr: ToastrService) {}
+    private toastr: ToastrService) {
+      super();
+    }
 
   ngOnInit(): void {
-    this.productId = this.activatedRoute.snapshot.paramMap.get('id');
-    
-    this.createForm();
-
-    if (this.productId) {
-      this.activatedRoute.data.pipe(
-        takeUntil(this.unsubscribeAll)
-      ).subscribe( 
-        (data: any) => this.productForm.patchValue(data.data)
-      )
-    }
+    this.getRouteData();
   }
 
-  ngOnDestroy(): void {
-    this.unsubscribeAll.next(null);
-    this.unsubscribeAll.complete();
-  }  
-
-  createForm(): void {
-    this.productForm = new FormGroup({
-      title: new FormControl(null, Validators.required),
-      price: new FormControl(null, Validators.required),
-      description: new FormControl(null, Validators.required),
-      image: new FormControl('https://i.pravatar.cc'),
-      category: new FormControl(null, Validators.required),
-    })
+  /**
+   * Get product returned from resolver
+   */
+  getRouteData(): void {
+    if (this.productId) {
+      this.activatedRoute.data.pipe(
+        takeUntil(this.$destroy)
+      ).subscribe( 
+        (data: any) => this.productForm.patchValue(data.product)
+      )
+    }
   }
 
   addProduct(): void {
@@ -59,7 +51,7 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
       this.productForm.disable();
 
-      this.service.add(product).subscribe(
+      this.service.addProduct(product).subscribe(
         () => {
           this.toastr.success('New product added successfully!!');
           this.productForm.enable();
@@ -71,14 +63,14 @@ export class ProductFormComponent implements OnInit, OnDestroy {
 
   updateProduct(): void {
     if (this.productForm.valid) {
-      const update: Update<any> = {
+      const update: Update<Product> = {
         id: this.productId,
         changes: this.productForm.value
       }
 
       this.productForm.disable();
 
-      this.service.update(update.changes, update.id as number).subscribe(
+      this.service.updateProduct(update.changes as Product, update.id as number).subscribe(
         () => {      
           this.store.dispatch(productUpdated({update}))
           this.toastr.success('Product updated successfully!!');
@@ -87,4 +79,9 @@ export class ProductFormComponent implements OnInit, OnDestroy {
       )
     }
   }
+
+  ngOnDestroy(): void {
+    this.$destroy.next(null);
+    this.$destroy.complete();
+  }    
 }

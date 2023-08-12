@@ -16,5 +16,11 @@
   "description": "Description",
   "add-product": "Add New Product",
   "edit-product": "Edit Product",
-  "required": "Field is Required"
+  "required": "Field is Required",
+  "total-visitors": "Total Visitors",
+  "new-ordrs": "New Ordrs",
+  "new-reviews": "Total Reviews",
+  "new-users": "Total Users",
+  "all-products": "All Products",
+  "copy": "All Rights Reserved © "
 }

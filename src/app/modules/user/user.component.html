@@ -5,19 +5,18 @@
             <div>
                 <ng-container *transloco="let t">
                     <div class="text-3xl font-semibold tracking-tight leading-8">{{t('product-dashboard')}}</div>
-                    <div class="font-medium tracking-tight text-secondary">{{t('products-sub-title')}}</div>
                 </ng-container>                                
             </div> 
         </div>
 
         <div class="mt-8 overflow-auto">
             <mat-button-toggle-group>
-                <mat-button-toggle (change)="getByCategory($event.value)" value="all">All</mat-button-toggle>
-                <mat-button-toggle (change)="getByCategory($event.value)" *ngFor="let cat of categories" [value]="cat">{{cat}}</mat-button-toggle>
+                <mat-button-toggle (change)="getProductsByCategory($event.value)" value="all">All</mat-button-toggle>
+                <mat-button-toggle (change)="getProductsByCategory($event.value)" *ngFor="let cat of ($categories | async)" [value]="cat">{{cat}}</mat-button-toggle>
             </mat-button-toggle-group>            
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-4 w-full gap-8 mt-8">
+        <div class="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-4 w-full gap-8 mt-8" >
             <app-product-card *ngFor="let product of products" [product]="product"></app-product-card>
         </div>
     </div>

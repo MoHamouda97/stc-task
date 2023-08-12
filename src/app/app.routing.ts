@@ -1,13 +1,11 @@
 import { Route } from "@angular/router";
-import { AdminGuard } from "./core/auth/guards/admin-guard";
 import { LoginGuard } from "./core/auth/guards/login-guard";
-import { UserGuard } from "./core/auth/guards/user-guard";
 import { LayoutComponent } from "./layout/layout.component";
 import { AdminComponent } from "./modules/admin/admin.component";
 import { AllProductsResolver } from "./modules/admin/resolvers/all-products.resolver";
 import { SignInComponent } from "./modules/auth/sign-in/sign-in.component";
-import { AllCategoriesResolver } from "./modules/user/resolvers/all-categories.resolver";
 import { UserComponent } from "./modules/user/user.component";
+import { AccessGuard } from "./core/auth/guards/access-guard";
 
 export const appRoutes: Route[] = [
     // Redirect empty path to 'sign-in'
@@ -33,7 +31,7 @@ export const appRoutes: Route[] = [
             {
                 path: 'admin',
                 component: AdminComponent,
-                canActivate: [AdminGuard],
+                canActivate: [AccessGuard],
                 children: [
                     {
                         path: '',
@@ -46,7 +44,7 @@ export const appRoutes: Route[] = [
             {
                 path: 'user',
                 component: UserComponent,
-                canActivate: [UserGuard],
+                canActivate: [AccessGuard],
                 children: [
                     {
                         path: '',
@@ -54,7 +52,6 @@ export const appRoutes: Route[] = [
                     }
                 ],
                 resolve: {
-                    data: AllCategoriesResolver,
                     products: AllProductsResolver
                 }                   
             }             

@@ -1,11 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
-body { 
-    margin: 0; 
-    font-family: Roboto, "Helvetica Neue", sans-serif; 
-    background-color: #f1f5f9;
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #f1f5f9;
 }
 
+.mat-mdc-unelevated-button > .mat-icon,
+.mat-mdc-raised-button > .mat-icon,
+.mat-mdc-outlined-button > .mat-icon {
+  margin: 0 !important;
+}
 
-.mat-mdc-unelevated-button>.mat-icon, .mat-mdc-raised-button>.mat-icon, .mat-mdc-outlined-button>.mat-icon {
-    margin: 0 !important;
+.signin-background {
+  background: linear-gradient(
+    0deg,
+    rgba(15, 11, 62, 1) 30%,
+    rgba(68, 9, 115, 1) 100%
+  );
+}
+
+.bg {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.h-600 {
+  height: 450px;
+}
+
+.stat {
+  flex: 23%;
+  color: #f0f0f0;
+}
+
+@media only screen and (max-width: 768px) {
+  .stat,
+  .flex-full {
+    flex: 100% !important;
+  }
 }

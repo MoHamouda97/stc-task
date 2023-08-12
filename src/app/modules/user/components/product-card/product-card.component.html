@@ -1,7 +1,7 @@
 <mat-card class="shadow">
     <mat-card-header>
       <div class="h-20 mb-16">
-        <mat-card-subtitle>{{product.category}} - {{product.price | currency}}</mat-card-subtitle>
+        <mat-card-subtitle>{{product.category}} - <span style="color:#ff375e">{{product.price | currency}}</span></mat-card-subtitle>
         <mat-card-title>{{product.title}}</mat-card-title>
       </div>
     </mat-card-header>
@@ -11,17 +11,14 @@
     </div>
 
     <mat-card-content>
-      <ng-container *ngIf="!isReadMore">
-        <p class="mt-4 text-justify">
-          {{(product.description | slice:0:75) + " ..."}}
-          <button mat-button color="primary" (click)="isReadMore = true">Read More</button>
-        </p>
-      </ng-container>
-      <ng-container *ngIf="isReadMore">
-        <p class="mt-4 text-justify">
-          {{product.description}}
-          <button mat-button color="primary" (click)="isReadMore = false">Read Less</button>
-        </p>
-      </ng-container>
+      <p class="mt-4 text-justify">
+        <ng-container *ngIf="!isReadMore">{{(product.description | slice:0:75) + " ..."}}</ng-container>
+        <ng-container *ngIf="isReadMore">{{product.description}}</ng-container>
+        
+        <button mat-button [ngStyle]="{'color':'#ff375e'}" (click)="isReadMore = !isReadMore">
+          <span *ngIf="!isReadMore">Read More</span>
+          <span *ngIf="isReadMore">Read Less</span>
+        </button>
+      </p>
     </mat-card-content>
 </mat-card>

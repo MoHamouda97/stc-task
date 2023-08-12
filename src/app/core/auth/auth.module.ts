@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-    imports  : [
+    imports: [
         HttpClientModule
-    ],
-    providers: []
+    ]
 })
 
 export class AuthModule {}

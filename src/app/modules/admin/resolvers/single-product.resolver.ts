@@ -13,6 +13,6 @@ export class SingleProductResolver  {
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : Observable<any> {
         const id: any = route.paramMap.get('id');
 
-        return this.service.getOne(id);
+        return this.service.getProduct(id);
     }
 }

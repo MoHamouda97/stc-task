@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
-import { AllProductsComponent } from './components/all-products/all-products.component';
-import { ProductFormComponent } from './components/product-form/product-form.component';
+import { AllProductsComponent } from './pages/all-products/all-products.component';
+import { ProductFormComponent } from './pages/product-form/product-form.component';
 import { AllProductsResolver } from './resolvers/all-products.resolver';
 import { SingleProductResolver } from './resolvers/single-product.resolver';
 
@@ -20,7 +20,7 @@ export const adminRoutes: Route[] = [
         path: 'edit/:id',
         component: ProductFormComponent,
         resolve: {
-            data: SingleProductResolver
+            product: SingleProductResolver
         }
     },
 ];

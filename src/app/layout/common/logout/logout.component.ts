@@ -1,16 +1,17 @@
 import { Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-logout',
-  templateUrl: './logout.component.html'
+  templateUrl: './logout.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LogoutComponent {
 
   constructor (private router: Router) {}
 
   logout() {
-    localStorage.clear();
+    sessionStorage.clear();
     this.router.navigate(['/sign-in'])
   }
 

@@ -1,4 +1,4 @@
-import { AllProductsComponent } from './components/all-products/all-products.component';
+import { AllProductsComponent } from './pages/all-products/all-products.component';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -13,15 +13,17 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { AdminComponent } from './admin.component';
 import { adminRoutes } from './admin.routing';
 import { ProductsService } from './services/products.service';
-import { ProductFormComponent } from './components/product-form/product-form.component';
+import { ProductFormComponent } from './pages/product-form/product-form.component';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { ProductsEffect } from 'src/app/store/products/products.effect';
 import { ProductsReducer } from 'src/app/store/reducers/products.reducers';
+import { ProductsStatsComponent } from './components/products-stats/products-stats.component';
 
 @NgModule({
     declarations: [
         AdminComponent,
+        ProductsStatsComponent,
         AllProductsComponent,
         ProductFormComponent
     ],

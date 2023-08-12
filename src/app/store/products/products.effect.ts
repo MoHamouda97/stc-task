@@ -14,7 +14,7 @@ export class ProductsEffect {
             .pipe(
                 ofType(ProductsActions.getProducts),
                 concatMap(action =>  {
-                    return this.service.getAll()
+                    return this.service.getProducts()
                 }),
                 map(products => productsLoaded({products}))
             )

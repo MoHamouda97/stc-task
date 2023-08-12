@@ -1,52 +1,46 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { select, Store } from '@ngrx/store';
-import { Subject, takeUntil } from 'rxjs';
-import { AppState } from 'src/app/reducers';
-import { selectAllProducts } from 'src/app/store/products/products.selectors';
+import { Component, OnInit, effect } from '@angular/core';
+import { Observable, lastValueFrom } from 'rxjs';
 import { CategoriesService } from './services/categories.service';
+import { ProductsSignals } from 'src/app/shared/signals/products.signal';
+import { ProductsService } from '../admin/services/products.service';
+import { Product } from 'src/app/shared/types/product';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html'
 })
-export class UserComponent implements OnInit, OnDestroy {
-  categories: any[];
-  products: any[];
-  storedProducts: any[];
-  unsubscribeAll: Subject<any> = new Subject<any>();
+export class UserComponent implements OnInit {
+  $categories: Observable<string[]> = this.service.$categories;
+  products: Product[];
 
   constructor (
-    private store: Store<AppState>,
-    private activatedRoute: ActivatedRoute, 
-    private service: CategoriesService) {}  
+    private service: CategoriesService,
+    private productsService: ProductsService,
+    private signals: ProductsSignals) {
+      this.registerSignalChanges();
+  }  
 
   ngOnInit(): void {
-    this.store.pipe(
-      takeUntil(this.unsubscribeAll),
-      select(selectAllProducts)
-      ).subscribe(
-      (data: any) => {
-        this.storedProducts = data;
-        this.products = data;
-      }
-    )
+    this.getProducts();
+  } 
 
-    this.activatedRoute.data.pipe(
-      takeUntil(this.unsubscribeAll)
-    ).subscribe( 
-      (data: any) => {
-        this.categories = data.data        
-      }
-    )
-  } 
-  
-  ngOnDestroy(): void {
-    this.unsubscribeAll.next(null);
-    this.unsubscribeAll.complete();
-  } 
-  
-  async getByCategory(cat: string) {
-    this.products = (cat === 'all') ? this.storedProducts : await this.service.getOne(cat).toPromise();
+  /**
+   * This function just for showing how to detect signal changes
+   */
+  registerSignalChanges(): void {
+    effect(() => {
+      this.products = this.signals.products();
+    })
   }
+
+  async getProducts(): Promise<void> {
+    if (this.signals.products().length === 0) {
+      const products = await lastValueFrom(this.productsService.getProducts());
+      this.signals.products.set(products);    
+    }
+  }
+  
+  async getProductsByCategory(cat: string): Promise<void> {
+    this.products = (cat === 'all') ? this.signals.products() : await lastValueFrom(this.service.getProductsByCategory(cat));
+  }  
 }

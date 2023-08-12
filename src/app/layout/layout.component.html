@@ -5,9 +5,9 @@
 <div class="layout-wrapper">
 
     <!-- Nav -->
-    <nav class="relative flex flex-0 items-center w-full h-12 px-4 md:px-6 z-49 shadow">
+    <nav class="relative flex flex-0 items-center w-full h-12 px-4 md:px-6 z-49 shadow" style="background-color: #46007d;">
         <div class="flex flex-auto items-center mx-2 lg:mr-8">
-            <img class="w-12" src="assets/images/stc-logo.png" />
+            <img class="w-12" src="assets/images/stc-logo-white.svg" />
         </div>
 
         <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2">
@@ -19,8 +19,11 @@
     <!-- Content -->
     <div class="relative">
         <!-- Content -->
-        <div class="w-full h-12 px-4 md:px-6 mt-8">
-            <router-outlet></router-outlet>
+        <div class="w-full px-4 md:px-6 mt-8">
+            <router-outlet></router-outlet>        
         </div>
     </div>
+
+    <!-- Footer -->
+    <app-footer></app-footer>    
 </div>

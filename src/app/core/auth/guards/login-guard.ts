@@ -1,25 +1,17 @@
-import { Injectable } from "@angular/core";
-import { Router, RouterStateSnapshot } from "@angular/router";
+import { inject } from "@angular/core";
+import { CanActivateFn, Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 
-@Injectable({
-    providedIn: 'root'
-})
+export const LoginGuard: CanActivateFn = () => {
+    const router: Router = inject(Router);
+    const toastr: ToastrService = inject(ToastrService);
+    const accessAs = sessionStorage.getItem('accessAs');
 
-export class LoginGuard  {
+    if (!accessAs) return true;
 
-    constructor(private router: Router, private toastr: ToastrService) {}
+    router.navigate([`/app/${accessAs}`]);
 
-    async canActivate(router: any, state: RouterStateSnapshot) {
-        const accessAs = localStorage.getItem('accessAs');
+    toastr.warning('You are already logged in!!')
 
-        if (!accessAs) return true;
-
-        this.router.navigate([`/app/${accessAs}`]);
-
-        this.toastr.warning('You are already logged in!!')
-
-        return false;
-    }
-
+    return false;
 }

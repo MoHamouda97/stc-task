@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductsService } from '../../services/products.service';
@@ -11,13 +11,14 @@ import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-all-products',
-  templateUrl: './all-products.component.html'
+  templateUrl: './all-products.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class AllProductsComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['id', 'title', 'category', 'image', 'price', 'action'];
   dataSource: any;
-  unsubscribeAll: Subject<any> = new Subject<any>();
+  $destroy: Subject<null> = new Subject<null>();
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -27,9 +28,16 @@ export class AllProductsComponent implements OnInit, OnDestroy {
     private toastr: ToastrService) {}
 
   ngOnInit(): void {
+    this.getProducts();
+  }
+
+  /**
+   * Get all products from store
+   */
+  getProducts(): void {
     this.store
     .pipe(
-      takeUntil(this.unsubscribeAll),
+      takeUntil(this.$destroy),
       select(selectAllProducts)
     ).subscribe(
       (data: any) => {
@@ -39,17 +47,17 @@ export class AllProductsComponent implements OnInit, OnDestroy {
     )
   }
 
-  ngOnDestroy(): void {
-    this.unsubscribeAll.next(null);
-    this.unsubscribeAll.complete();
-  }   
-
-  delete(id: number) {
-    this.service.delete(id).subscribe(
+  delete(id: number): void {
+    this.service.deleteProduct(id).subscribe(
       () => {
         this.store.dispatch(productDeleted({id}))
         this.toastr.success('Product deleted successfully!');        
       }
     )
-  }  
+  }
+  
+  ngOnDestroy(): void {
+    this.$destroy.next(null);
+    this.$destroy.complete();
+  }     
 }

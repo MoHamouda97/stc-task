@@ -16,5 +16,11 @@
   "description": "الوصف",
   "add-product": "اضافة منتج جديد",
   "edit-product": "تعديل المنتج",
-  "required": "الحقل مطلوب"
+  "required": "الحقل مطلوب",
+  "total-visitors": "عدد الزوار",
+  "new-ordrs": "طلبات جديدة",
+  "new-reviews": "عدد المراجعات",
+  "new-users": "عدد المستخدمين",
+  "all-products": "كل المنتجات",
+  "copy": "جميع الحقوق محفوظة © "
 }
