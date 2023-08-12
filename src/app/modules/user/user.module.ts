@@ -1,8 +1,4 @@
 import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
-import { MatIconModule } from '@angular/material/icon';
-import { MatCardModule } from '@angular/material/card';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { CategoriesService } from './services/categories.service';
@@ -20,10 +16,6 @@ import { RouterModule } from '@angular/router';
     ],
     imports: [
         RouterModule,
-        MatButtonModule,
-        MatButtonToggleModule,
-        MatCardModule,
-        MatIconModule,
         EffectsModule.forFeature([
             ProductsEffect
         ]),

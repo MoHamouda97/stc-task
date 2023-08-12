@@ -1,13 +1,5 @@
 import { AllProductsComponent } from './pages/all-products/all-products.component';
 import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatInputModule } from '@angular/material/input';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AdminComponent } from './admin.component';
@@ -29,14 +21,6 @@ import { ProductsStatsComponent } from './components/products-stats/products-sta
     ],
     imports: [
         RouterModule.forChild(adminRoutes),
-        MatButtonModule,
-        MatCheckboxModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatMenuModule,
-        MatInputModule,
-        MatTableModule,
-        MatPaginatorModule,
         EffectsModule.forFeature([
             ProductsEffect
         ]),

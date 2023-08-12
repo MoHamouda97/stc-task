@@ -6,6 +6,7 @@ import { AllProductsResolver } from "./modules/admin/resolvers/all-products.reso
 import { SignInComponent } from "./modules/auth/sign-in/sign-in.component";
 import { UserComponent } from "./modules/user/user.component";
 import { AccessGuard } from "./core/auth/guards/access-guard";
+import { NotFoundPageComponent } from "./modules/not-found-page/not-found-page.component";
 
 export const appRoutes: Route[] = [
     // Redirect empty path to 'sign-in'
@@ -56,5 +57,11 @@ export const appRoutes: Route[] = [
                 }                   
             }             
         ]
-    }  
+    },
+    
+    // 404
+    {
+        path: '**',
+        loadComponent: () => import('./modules/not-found-page/not-found-page.component').then(m => m.NotFoundPageComponent)
+    }
 ] 
